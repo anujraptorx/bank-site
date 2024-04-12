@@ -1,0 +1,99 @@
+// import React from "react";
+// import favicon from "../../../assets/favicon.ico";
+
+// export default function AddMoney() {
+//   return (
+//     <div className="bg-[#020811] h-screen w-screen place-content-center">
+//       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 ">
+//         <div className="mx-auto max-w-lg">
+//           <img className="mx-auto h-10 w-auto" src={favicon} alt="RaptorX.ai" />
+
+//           <form
+//             action="#"
+//             className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
+//           >
+//             <div>
+//               <label htmlFor="addmoney" className="sr-only">
+//                 addmoney
+//               </label>
+
+//               <div className="relative">
+//                 <input
+//                   type="number"
+//                   className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+//                   placeholder="Enter amount to add"
+//                 />
+//               </div>
+//             </div>
+
+//             <button
+//               type="submit"
+//               className="w-full bg-gradient-to-br from-teal-400 to-blue-500 rounded-md border border-blue-500 px-4 py-2 text-white"
+//             >
+//               Add Money
+//             </button>
+//           </form>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+
+
+import React, { useState } from "react";
+import favicon from "../../../assets/favicon.ico";
+
+export default function AddMoney({ handleAddMoney }) {
+  const [amount, setAmount] = useState();
+
+  
+
+  const handleChange = (e) => {
+    setAmount(parseInt(e.target.value)); // Convert input value to integer
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleAddMoney(amount); // Call handleAddMoney function with the entered amount
+    setAmount(0); // Reset input field after submission
+  };
+
+  return (
+    <div className="bg-[#020811] h-screen w-screen place-content-center">
+      <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 ">
+        <div className="mx-auto max-w-lg">
+          <img className="mx-auto h-10 w-auto" src={favicon} alt="RaptorX.ai" />
+          
+          <form
+            onSubmit={handleSubmit}
+            className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
+          >
+            <div>
+              <label htmlFor="addmoney" className="sr-only">
+                addmoney
+              </label>
+
+              <div className="relative">
+                <input
+                  type="number"
+                  className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                  placeholder="Enter amount to add"
+                  value={amount}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full bg-gradient-to-br from-teal-400 to-blue-500 rounded-md border border-blue-500 px-4 py-2 text-white"
+            >
+              Add Money
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
