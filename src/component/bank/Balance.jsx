@@ -6,7 +6,8 @@ import { MdOutlineGpsFixed } from "react-icons/md";
 import { FaCreditCard } from "react-icons/fa";
 import PieChart from "./PieChart";
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import React, { Component, useState } from "react";
+import AddMoney from "./saving/AddMoney";
 
 const data = {
   labels: ["Food", "Travel", "Miscellaneous", "Medical"],
@@ -30,17 +31,7 @@ const data = {
   ],
 };
 
-export default function Balance({balance}) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
+export default function Balance({ balance }) {
   return (
     <>
       <div className="flex flex-col mt-5 gap-4">
@@ -48,7 +39,7 @@ export default function Balance({balance}) {
           <div className="px-4 mx-5 bg-[#020811] text-gray-400">
             <div className="flex p-2 pb-4 ">
               <LuIndianRupee size={24} />
-              <div className="px-2">50,000 {balance}</div>
+              <div className="px-2"> {balance}</div>
             </div>
 
             <div className="flex justify-center gap-10 mx-5 pb-5">
@@ -110,39 +101,3 @@ export default function Balance({balance}) {
     </>
   );
 }
-
-
-
-
-// import React from 'react';
-// import { LuIndianRupee } from "react-icons/lu";
-// import { IoIosAdd } from "react-icons/io";
-// import { Link } from 'react-router-dom';
-
-
-// export default function Balance({ balance }) {
-//   return (
-//     <div className="flex flex-col mt-5 gap-4">
-//       <div className="px-4 mx-5 bg-[#020811] text-gray-400">
-//         <div className="flex p-2 pb-4 ">
-//           <LuIndianRupee size={24} />
-//           <div className="px-2">{balance}</div>
-//         </div>
-
-//         <div className="flex justify-center gap-10 mx-5 pb-5">
-//           <div className="flex flex-col w-28 justify-center items-center">
-//             <Link to="/addmoney">
-//             <div className="bg-[#0F141D] w-12 p-2 flex justify-center rounded-md">
-//               <IoIosAdd size={30} />
-//             </div>
-//             </Link>
-//             <p className="mt-2 flex justify-center mb-3">Add money</p>
-//           </div>
-
-          
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-

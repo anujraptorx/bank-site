@@ -5,14 +5,32 @@ import SignupPage from './component/core/SignupPage';
 import LoginPage from './component/core/LoginPage';
 import NotFound from './component/NotFound';
 import ForgotPassword from './component/core/ForgotPassword';
-import Dashboard from './pages/Home';
 import Transaction from './pages/Transaction';
 import Account from './component/bank/Account';
 import AddMoney from './component/bank/saving/AddMoney';
 import SendMoney from './component/bank/saving/SendMoney';
-import Home from './pages/Home';
+import Dashboard from './component/bank/Dashboard';
+import PaymentSuccess from './component/bank/saving/PaymentSuccess';
 
 function App() {
+
+  const [balance, setBalance] = useState(10000);
+
+  const handleAddMoney = (amount) => {
+    setBalance(balance + amount);
+  };
+
+  const handleSendMoney = (amount) => {
+    if(balance <= amount) {
+      alert("Insufficient balance");
+      return;
+    }else{
+      const updatedBalance = balance - amount;
+      setBalance(updatedBalance);
+      // setBalance(balance - amount);
+    }
+    
+  };
   
 
   return (
@@ -24,11 +42,14 @@ function App() {
         <Route path="/login" Component={LoginPage} />
         <Route path="/forgotpassword" Component={ForgotPassword} />
 
-        <Route path="/home" Component={Home} />
-        <Route path="/transactions" Component={Transaction} />
-        <Route path="/account" Component={Account} />
-        <Route path="/addmoney" Component={AddMoney} />
-        <Route path="/sendmoney" Component={SendMoney} />
+        
+        <Route path="/transactions" Component={Transaction} /> 
+        <Route path="/home" element={<Dashboard balance={balance} />} />
+        <Route path="/addmoney" element={<AddMoney handleAddMoney={handleAddMoney} />} />
+        <Route path="/success" Component={PaymentSuccess} />
+        <Route path="/account" element={<Account/>} />
+        <Route path="/sendmoney" element={<SendMoney handleSendMoney={handleSendMoney}/>} /> 
+        
 
         <Route Component={NotFound} />
       </Routes>

@@ -1,18 +1,12 @@
 import React, { useState } from "react";
 import Balance from "./Balance";
-import AddMoney from "./saving/AddMoney";
+import SideBar from "../sideBar/SideBar";
 
-export default function Dashboard() {
-  const [balance, setBalance] = useState(50000);
-
-  const handleAddMoney = (amount) => {
-    setBalance(balance + amount);
-  };
-
+export default function Dashboard({ balance }) {
   return (
-    <div>
+    <div className="flex bg-[#0F141D]">
+      <SideBar />
       <Balance balance={balance} />
-      <AddMoney handleAddMoney={handleAddMoney} />
     </div>
   );
 }

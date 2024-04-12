@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "email": "anujkumaryadav.in@gmail.com",
+    "password": "anuj",
+    "name": "Anujkumar Yadav",
+    "accountNumber": "123456789",
+    "ifscCode": "ABC123"
+  },
+  {
+    "id": 2,
+    "email": "user2@example.com",
+    "password": "password2",
+    "name": "Jane Smith",
+    "accountNumber": "987654321",
+    "ifscCode": "XYZ789"
+  },
+  {
+    "id": 3,
+    "email": "user3@example.com",
+    "password": "password3",
+    "name": "Alice Johnson",
+    "accountNumber": "456789123",
+    "ifscCode": "DEF456"
+  }
+]

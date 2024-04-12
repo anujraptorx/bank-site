@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import favicon from "../../../assets/favicon.ico";
 import { Link } from "react-router-dom";
 
-export default function SendMoney() {
+
+export default function SendMoney({handleSendMoney}) {
+
+
+  const [amount, setAmount] = useState();
+  
+
+  const handleChange = (e) => {
+    setAmount(parseInt(e.target.value));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleSendMoney(amount);
+  };
+
+
   return (
     <>
       <>
@@ -16,7 +32,7 @@ export default function SendMoney() {
               />
 
               <form
-                action="#"
+                onSubmit={handleSubmit}
                 className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
               >
                 <div>
@@ -34,7 +50,8 @@ export default function SendMoney() {
                     <input
                       type="number"
                       className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                      placeholder="Account Number"
+                      placeholder="Enter Amount"
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
@@ -43,6 +60,16 @@ export default function SendMoney() {
                   <div className="relative">
                     <input
                       type="number"
+                      className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                      placeholder="Account Number"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <div className="relative">
+                    <input
+                      type="text"
                       className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                       placeholder="IFSC Code"
                     />
@@ -59,7 +86,7 @@ export default function SendMoney() {
                   type="submit"
                   className="w-full bg-gradient-to-br from-teal-400 to-blue-500 rounded-md border border-blue-500 px-4 py-2 text-white"
                 >
-                  Semd Money
+                  Send Money
                 </button>
               </form>
             </div>
