@@ -27,7 +27,6 @@ function App() {
     }else{
       const updatedBalance = balance - amount;
       setBalance(updatedBalance);
-      // setBalance(balance - amount);
     }
     
   };
@@ -51,7 +50,7 @@ function App() {
         <Route path="/sendmoney" element={<SendMoney handleSendMoney={handleSendMoney}/>} /> 
         
 
-        <Route Component={NotFound} />
+        <Route path='*' Component={NotFound} />
       </Routes>
     </Router>
     </>
