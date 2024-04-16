@@ -9,17 +9,17 @@
   },
   {
     "id": 2,
-    "email": "user2@example.com",
-    "password": "password2",
-    "name": "Jane Smith",
+    "email": "pratyusha@gmail.com",
+    "password": "zxcv",
+    "name": "Pratyusha Vemur",
     "accountNumber": "987654321",
     "ifscCode": "XYZ789"
   },
   {
     "id": 3,
-    "email": "user3@example.com",
-    "password": "password3",
-    "name": "Alice Johnson",
+    "email": "jitendra@gmail.com",
+    "password": "qwer",
+    "name": "Jitendra Chaudhari",
     "accountNumber": "456789123",
     "ifscCode": "DEF456"
   }
