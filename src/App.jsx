@@ -45,7 +45,6 @@ function App() {
       const updatedUsersArray = [...users];
       updatedUsersArray[recipientIndex] = updatedRecipient;
       setUsers(updatedUsersArray);
-      alert("Money sent successfully.");
       console.log("Money sent successfully.");
     } else {
       alert("Recipient not found. Please check the account number and IFSC code.");
