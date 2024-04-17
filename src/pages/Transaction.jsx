@@ -5,7 +5,6 @@ import {
   MaterialReactTable,
   useMaterialReactTable,
 } from "material-react-table";
-import { MdDarkMode } from "react-icons/md";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const data = [

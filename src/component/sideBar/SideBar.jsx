@@ -1,42 +1,3 @@
-// import React, { useState } from 'react';
-// import { FaBars, FaTimes } from 'react-icons/fa';
-// import { TbLayoutSidebarLeftExpand, TbLayoutSidebarRightExpand  } from "react-icons/tb";
-
-// import Logo from '../../assets/favicon.ico'
-
-// const SideBar = () => {
-//   const [expanded, setExpanded] = useState(false);
-
-//   const toggleSidebar = () => {
-//     setExpanded(!expanded);
-//   };
-
-//   return (
-//     <div className={`sidebar ${expanded ? 'w-64' : 'w-16'} bg-gray-800 h-screen transition-width duration-300 ease-in-out`}>
-
-//       <div className="sidebar-content p-4">
-//         <div className="sidebar-header text-center mb-4">
-//             <img src={Logo}/>
-//           <h2 className="text-white">Company Name</h2>
-//         </div>
-//         <ul className="sidebar-menu">
-//           <li className="text-white">Item 1</li>
-//           <li className="text-white">Item 2</li>
-//           <li className="text-white">Item 3</li>
-//           <li className="text-white">Item 4</li>
-//           <li className="text-white">Item 5</li>
-//         </ul>
-//       </div>
-
-//       <div className="toggle-btn flex justify-center items-center h-12 text-white cursor-pointer" onClick={toggleSidebar}>
-//         {expanded ? <TbLayoutSidebarRightExpand size={24}/> : <TbLayoutSidebarLeftExpand size={24}/>}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default SideBar;
-
 import React, { useState } from "react";
 import { MdAccountCircle } from "react-icons/md";
 import { FaCreditCard } from "react-icons/fa6";
@@ -52,7 +13,7 @@ import Logo from "../../assets/favicon.ico";
 const SideBar = () => {
   return (
     <>
-      <div className="flex bg-[#020811] h-screen w-40">
+      <div className="flex bg-[#020811] h-[100vh] w-40">
         
 
         <ul className="border-e">

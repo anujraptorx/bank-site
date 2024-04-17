@@ -31,10 +31,11 @@ const data = {
   ],
 };
 
-export default function Balance({ balance }) {
+export default function Balance({ balance, setBalance }) {
+  
   return (
     <>
-      <div className="flex flex-col mt-5 gap-4">
+      <div className="flex flex-col mt-5 gap-4 h-[100] w-screen">
         <Dropdown title="Saving Account">
           <div className="px-4 mx-5 bg-[#020811] text-gray-400">
             <div className="flex p-2 pb-4 ">
