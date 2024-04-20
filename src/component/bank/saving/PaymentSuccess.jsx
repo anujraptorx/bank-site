@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function PaymentSuccess() {
   useEffect(() => {
     const timer = setTimeout(() => {
-      window.location.href = "/home"; // Redirect to /home after 3 seconds
+      window.location.href = "/home";
     }, 2000);
 
     return () => clearTimeout(timer);
