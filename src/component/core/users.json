@@ -1,26 +1,26 @@
 [
   {
-    "id": 1,
     "email": "anujkumaryadav.in@gmail.com",
     "password": "anuj",
     "name": "Anujkumar Yadav",
     "accountNumber": "123456789",
-    "ifscCode": "ABC123"
+    "ifscCode": "ABC123",
+    "balance": 10000
   },
   {
-    "id": 2,
     "email": "pratyusha@gmail.com",
     "password": "zxcv",
     "name": "Pratyusha Vemur",
     "accountNumber": "987654321",
-    "ifscCode": "XYZ789"
+    "ifscCode": "XYZ789",
+    "balance": 11000
   },
   {
-    "id": 3,
     "email": "jitendra@gmail.com",
     "password": "qwer",
     "name": "Jitendra Chaudhari",
     "accountNumber": "456789123",
-    "ifscCode": "DEF456"
+    "ifscCode": "DEF456",
+    "balance": 12000 
   }
 ]

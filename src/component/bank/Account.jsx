@@ -18,7 +18,6 @@ export default function Account() {
     setLoggedInUserEmail(email);
 
     if (email) {
-      
       const user = users.find(user => user.email === email);
       if (user) {
         setLoggedInUser(user);
@@ -35,6 +34,19 @@ export default function Account() {
     localStorage.removeItem("loggedInUserEmail");
     navigate('/login');
   };
+
+  // Prevent going back after logout
+  useEffect(() => {
+    const handleBackButton = (event) => {
+      event.preventDefault();
+      navigate('/login');
+    };
+
+    window.history.pushState(null, '', window.location.pathname);
+    window.addEventListener('popstate', handleBackButton);
+
+    return () => window.removeEventListener('popstate', handleBackButton);
+  }, []);
 
   return (
     <div className="flex bg-[#020811] h-[100vh]">

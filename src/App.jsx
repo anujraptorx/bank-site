@@ -4,6 +4,7 @@ import {
   Route,
   Routes,
   useNavigate,
+  json,
 } from "react-router-dom";
 import "./App.css";
 import SignupPage from "./component/core/SignupPage";
@@ -19,16 +20,19 @@ import PaymentSuccess from "./component/bank/saving/PaymentSuccess";
 import users from "./component/core/users.json";
 
 function App() {
-  const [balance, setBalance] = useState(() => {
-    const storedBalance = localStorage.getItem("balance");
-    return storedBalance ? parseInt(storedBalance) : 10000;
-  });
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [balance, setBalance] = useState(10000);
+  const [loggedInUserEmail, setLoggedInUserEmail] = useState(null);
   const [usersData, setUsersData] = useState(users);
   const navigate = useNavigate();
 
   useEffect(() => {
     localStorage.setItem("balance", balance);
   }, [balance]);
+
+  useEffect(() => {
+    localStorage.setItem("users", JSON.stringify(usersData));
+  }, [usersData]);
 
   const handleAddMoney = (amount) => {
     setBalance((prevBalance) => prevBalance + amount);
@@ -39,49 +43,52 @@ function App() {
   };
 
   const handleSendMoney = (amount, recipientAccountNumber, recipientIFSC) => {
-    console.log("Sending money...");
-    console.log("Amount:", amount);
-    console.log("Recipient Account Number:", recipientAccountNumber);
-    console.log("Recipient IFSC:", recipientIFSC);
-
+    // Check if the sender has sufficient balance
     if (balance < amount) {
       alert("Insufficient balance");
       return;
     }
-
-    setBalance((prevBalance) => prevBalance - amount);
-
-    // Find the recipient user
-    const recipient = usersData.find(
+  
+    // Find the sender's index in the usersData array
+    const senderIndex = usersData.findIndex(
+      (user) => user.email === loggedInUserEmail
+    );
+  
+    // Find the recipient's index in the usersData array
+    const recipientIndex = usersData.findIndex(
       (user) =>
         user.accountNumber === recipientAccountNumber &&
         user.ifscCode === recipientIFSC
     );
-    console.log("Recipient:", recipient);
-
-    if (recipient) {
-      // Update recipient's balance
-      const updatedRecipient = {
-        ...recipient,
-        balance: recipient.balance + amount,
-      };
-      const updatedUsers = usersData.map((user) =>
-        user.id === updatedRecipient.id ? updatedRecipient : user
-      );
-      setUsersData(updatedUsers);
-      console.log("Recipient updated:", updatedRecipient);
-      console.log("Updated users data:", updatedUsers);
-    } else {
+  
+    if (recipientIndex === -1) {
       alert(
         "Recipient not found. Please check the account number and IFSC code."
       );
+      return;
     }
-
-    navigate("/success");
-    setTimeout(() => {
-      navigate("/home");
-    }, 2000);
+  
+    // Update sender's balance
+    const updatedSenderBalance = balance - amount;
+    setBalance(updatedSenderBalance);
+  
+    // Update recipient's balance
+    const updatedUsersData = [...usersData];
+    const recipientBalanceBeforeUpdate = parseFloat(
+      updatedUsersData[recipientIndex].balance
+    );
+    console.log("Recipient Balance Before Update:", recipientBalanceBeforeUpdate);
+    updatedUsersData[recipientIndex].balance = recipientBalanceBeforeUpdate + amount;
+  
+    const recipientBalanceAfterUpdate = parseFloat(
+      updatedUsersData[recipientIndex].balance
+    );
+    console.log("Recipient Balance After Update:", recipientBalanceAfterUpdate);
+  
+    setUsersData(updatedUsersData);
   };
+  
+
 
   return (
     <>
@@ -101,7 +108,12 @@ function App() {
         <Route path="/account" element={<Account />} />
         <Route
           path="/sendmoney"
-          element={<SendMoney handleSendMoney={handleSendMoney} />}
+          element={
+            <SendMoney
+              loggedInUserEmail={loggedInUserEmail}
+              handleSendMoney={handleSendMoney}
+            />
+          }
         />
 
         <Route path="*" element={<NotFound />} />

@@ -13,7 +13,7 @@ const SideBar = () => {
 
   return (
     <>
-      <div className="flex bg-[#020811] h-[100vh] w-40">
+      <div className="flex bg-[#020811] h-[100] w-40">
         <ul className="border-e">
           <NavLink to="/" exact activeClassName="active">
             <img src={mainLogo} className="mt-5 px-4" alt="Main Logo" />
