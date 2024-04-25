@@ -31,7 +31,7 @@ const data = {
   ],
 };
 
-export default function Balance({ balance, setBalance }) {
+export default function Balance({ balance }) {
   
   return (
     <>

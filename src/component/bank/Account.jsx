@@ -3,31 +3,11 @@ import SideBar from "../sideBar/SideBar";
 import users from "../core/users.json";
 import { useNavigate } from "react-router-dom";
 
-export default function Account() {
-  const [loggedInUserEmail, setLoggedInUserEmail] = useState("");
-  const [loggedInUser, setLoggedInUser] = useState({}); 
+export default function Account({ }) {
+  const [loggedInUser, setLoggedInUser] = useState(null);
+  const [loggedInUserEmail, setLoggedInUserEmail] = useState(null);
   const [isLoading, setIsLoading] = useState(true); 
   const [error, setError] = useState(null); 
-
-  const navigate = useNavigate(); 
-
-  
-  useEffect(() => {
-    const email = localStorage.getItem("loggedInUserEmail");
-    console.log("Logged-in user email:", email);
-    setLoggedInUserEmail(email);
-
-    if (email) {
-      const user = users.find(user => user.email === email);
-      if (user) {
-        setLoggedInUser(user);
-      } else {
-        setError("User not found"); 
-      }
-    }
-
-    setIsLoading(false); 
-  }, []);
 
   // Logout function
   const handleLogout = () => {
@@ -46,6 +26,23 @@ export default function Account() {
     window.addEventListener('popstate', handleBackButton);
 
     return () => window.removeEventListener('popstate', handleBackButton);
+  }, []);
+
+  useEffect(() => {
+    const email = localStorage.getItem("loggedInUserEmail");
+    console.log("Logged-in user email:", email);
+    setLoggedInUserEmail(email);
+
+    if (email) {
+      const user = users.find(user => user.email === email);
+      if (user) {
+        setLoggedInUser(user);
+      } else {
+        setError("User not found"); 
+      }
+    }
+
+    setIsLoading(false); 
   }, []);
 
   return (
@@ -84,6 +81,11 @@ export default function Account() {
                 <div className="px-3 grid grid-cols-1 gap-1 py-3 even:bg-gray-700 sm:grid-cols-3 sm:gap-4">
                   <dt className="font-medium text-gray-400">Email Id</dt>
                   <dd className="text-gray-400 sm:col-span-2">{loggedInUserEmail}</dd>
+                </div>
+
+                <div className="px-3 grid grid-cols-1 gap-1 py-3 even:bg-gray-700 sm:grid-cols-3 sm:gap-4">
+                  <dt className="font-medium text-gray-400">Balance</dt>
+                  <dd className="text-gray-400 sm:col-span-2">{loggedInUser.balance}</dd>
                 </div>
               </div>
             </div>
